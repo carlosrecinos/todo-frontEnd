@@ -1,0 +1,7 @@
+.TareaRow{
+    width: 50%;
+    height: auto;
+    margin:0 auto;
+    margin-bottom: 20px;
+    border: 5px solid black;
+}
