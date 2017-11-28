@@ -1,12 +1,39 @@
-const TAREA_ADD = "TAREA_ADD"
+const ADD_TAREA = "ADD_TAREA"
+const UPDATE_TAREA = "UPDATE_TAREA"
+const DELETE_TAREA = "DELETE_TAREA"
+const FINISH_TAREA = "FINISH_TAREA"
 
+const VisibilityFilters = {
+  SHOW_ALL : "SHOW_ALL",
+  SHOW_FINISHED : "SHOW_FINISHED",
+  SHOW_UNFINISHED : "SHOW_UNFINISHED"
+}
 
 
 function addTarea(tarea) {
     return {
-      type: TAREA_ADD,
+      type: ADD_TAREA,
       tarea
     }
   }
 
-dispatch(addTarea(tarea))
+function updateTarea(id){
+  return{
+    type: UPDATE_TAREA,
+    id
+  }
+}
+
+function deleteTarea(id){
+  return{
+    type: DELETE_TAREA,
+    id
+  }
+}
+
+function finishTarea(id){
+  return{
+    type: FINISH_TAREA,
+    id
+  }
+}
