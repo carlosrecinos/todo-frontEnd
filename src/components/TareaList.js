@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import store from '../store';
+import {finalizarTarea,eliminarTarea} from '../actionCreators';
 class TareaList extends Component{
     constructor(props){
         super(props)
@@ -7,32 +8,21 @@ class TareaList extends Component{
 
     }
     eliminarTarea(id){
-        console.log("ELIMINAR: "+id)
-        store.dispatch({
-            type:"DELETE_TAREA",
-            id:this.props.listado.id
-        })
+        store.dispatch(eliminarTarea(this.props.listado.id))
     }
     finalizarTarea(id){
-        console.log(id)
-        store.dispatch({
-            type:"FINISH_TAREA",
-            id:this.props.listado.id
-        })
-        console.log("FINISH:: ")
-        console.log(store.getState())
+        store.dispatch(finalizarTarea(this.props.listado.id))
         
     }
     render(){
-        console.log("props: ")
         console.log(this.props)
         return (
             <div >
                 <h5>ID: {this.props.listado.id}</h5>
                 <h5>Tarea: {this.props.listado.nombre}</h5>
                 <h5>Completado: {this.props.listado.completado.toString()}</h5>
-                <button href="#" id={this.props.listado.id} onClick={this.finalizarTarea.bind(this)}>Finalizar Tarea</button>
-                <button href="#" id={this.props.listado.id} onClick={this.eliminarTarea.bind(this)}>Eliminar Tarea</button>
+                <button id={this.props.listado.id} onClick={this.finalizarTarea.bind(this)}>Finalizar Tarea</button>
+                <button id={this.props.listado.id} onClick={this.eliminarTarea.bind(this)}>Eliminar Tarea</button>
             </div>
             /*<div>
                 {

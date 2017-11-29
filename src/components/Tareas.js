@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TareaList from './TareaList';
 import store from '../store';
+import {addTarea} from '../actionCreators';
 class Tareas extends Component {
 
     constructor(props){
@@ -19,15 +20,17 @@ class Tareas extends Component {
         
     }
     addTarea(tarea){
-        
-        store.dispatch({
-            type:"ADD_TAREA",
-            tarea: this.state.tarea
-        })
+        store.dispatch(addTarea(this.state.tarea))
         this.inputId.value="";
         this.inputNombre.value="";
-        console.log("state agregar: ")
-        console.log(store.getState())
+        this.setState({
+            tarea:{
+                ...this.state.tarea,
+                id:"",
+                nombre:"",
+                completado:""
+            }
+        })
     }
     actualizarId(e){
         this.setState({
