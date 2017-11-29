@@ -45,3 +45,11 @@ function setVisibilityFilters(filter){
     type: S
   }
 }
+
+export default actions = {
+  addTarea,
+  updateTarea,
+  deleteTarea,
+  finishTarea,
+  setVisibilityFilters
+}
