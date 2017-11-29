@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
-import TareaRow from './TareaRow';
-
+import store from '../store';
 class TareaList extends Component{
-    render(){
+    constructor(props){
+        super(props)
+        console.log(this.props)
 
+    }
+    eliminarTarea(id){
+        console.log("ELIMINAR: "+id)
+        store.dispatch({
+            type:"DELETE_TAREA",
+            id:this.props.listado.id
+        })
+    }
+    render(){
         return (
-            <div>
+            <div >
+                <h5>ID: {this.props.listado.id}</h5>
+                <h5>Tarea: {this.props.listado.nombre}</h5>
+                <a href="#" id={this.props.listado.id} onClick={this.eliminarTarea.bind(this)}>Eliminar Tarea</a>
+            </div>
+            /*<div>
                 {
                     this.props.listado.map((tarea)=>{
                         return (
@@ -15,7 +30,7 @@ class TareaList extends Component{
                         )
                     })
                 }
-            </div>
+            </div>*/
         )
         /*
         return (

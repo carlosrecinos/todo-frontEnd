@@ -5,39 +5,43 @@ class Tareas extends Component {
 
     constructor(props){
         super(props)
-        console.log("Aasd")
+        this.state={
+            tareas:[],
+            tarea:{}
+        };
         store.subscribe(()=>{
-            this.state={
-                tareas:store.getState().tareas,
-                    tarea: {
-                        id: "",
-                        nombre:""
-    
-                    }
-                };
-                console.log("tareas"+this.state)
+            this.setState({
+                tareas:store.getState().tareas
+            })
         })
         
         
     }
-
     addTarea(tarea){
-        console.log(this.state.tareas)
-        this.setState({
-            tareas:this.state.tareas.concat(this.state.tarea)
-        })
         store.dispatch({
             type:"ADD_TAREA",
-            tarea
+            tarea: this.state.tarea
+        })
+        this.inputId.value="";
+        this.inputNombre.value="";
+    }
+    actualizarId(e){
+        this.setState({
+            tarea:{
+                ...this.state.tarea,
+                id: e.target.value
+            }
         })
     }
     actualizarNombre(e){
         this.setState({
             tarea:{
+                ...this.state.tarea,
                 nombre: e.target.value
             }
         })
     }
+    
     /*componentWillMount(){
         fetch('http://localhost:3005/tareas')
         .then((respuesta)=>{
@@ -57,15 +61,16 @@ class Tareas extends Component {
             {
                 this.state.tareas.map((tarea)=>{
                     return (
-                        <h5>Tarea: {tarea.nombre}</h5>
+                        <TareaList listado={tarea} key={tarea.id}/>
+                        
                     )
                 })
             }
-            
-            <input type="text" name="nombreTarea" onChange={this.actualizarNombre.bind(this)}/>
-            <button onClick={this.addTarea.bind(this)}>Agregar Tarea</button>
+            ID: <input type="text" name="idTarea" ref={el => this.inputId = el} onChange={this.actualizarId.bind(this)}/><br/>
+            NOMBRE: <input type="text" name="nombreTarea" ref={el => this.inputNombre = el} onChange={this.actualizarNombre.bind(this)}/>
+            <button onClick={this.addTarea.bind(this)}>+</button>
             <br/>
-            <p>Tarea: </p><input value={this.state.tarea.nombre}></input>
+            
         </div>
         )
     
