@@ -13,12 +13,26 @@ class TareaList extends Component{
             id:this.props.listado.id
         })
     }
+    finalizarTarea(id){
+        console.log(id)
+        store.dispatch({
+            type:"FINISH_TAREA",
+            id:this.props.listado.id
+        })
+        console.log("FINISH:: ")
+        console.log(store.getState())
+        
+    }
     render(){
+        console.log("props: ")
+        console.log(this.props)
         return (
             <div >
                 <h5>ID: {this.props.listado.id}</h5>
                 <h5>Tarea: {this.props.listado.nombre}</h5>
-                <a href="#" id={this.props.listado.id} onClick={this.eliminarTarea.bind(this)}>Eliminar Tarea</a>
+                <h5>Completado: {this.props.listado.completado.toString()}</h5>
+                <button href="#" id={this.props.listado.id} onClick={this.finalizarTarea.bind(this)}>Finalizar Tarea</button>
+                <button href="#" id={this.props.listado.id} onClick={this.eliminarTarea.bind(this)}>Eliminar Tarea</button>
             </div>
             /*<div>
                 {

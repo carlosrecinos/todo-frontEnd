@@ -12,24 +12,29 @@ class Tareas extends Component {
         store.subscribe(()=>{
             this.setState({
                 tareas:store.getState().tareas
+            
             })
         })
         
         
     }
     addTarea(tarea){
+        
         store.dispatch({
             type:"ADD_TAREA",
             tarea: this.state.tarea
         })
         this.inputId.value="";
         this.inputNombre.value="";
+        console.log("state agregar: ")
+        console.log(store.getState())
     }
     actualizarId(e){
         this.setState({
             tarea:{
                 ...this.state.tarea,
-                id: e.target.value
+                id: e.target.value,
+                completado: false
             }
         })
     }
@@ -58,18 +63,19 @@ class Tareas extends Component {
     return (
         <div>
             <h1>Lista de Tareas</h1>
-            {
-                this.state.tareas.map((tarea)=>{
-                    return (
-                        <TareaList listado={tarea} key={tarea.id}/>
-                        
-                    )
-                })
-            }
             ID: <input type="text" name="idTarea" ref={el => this.inputId = el} onChange={this.actualizarId.bind(this)}/><br/>
             NOMBRE: <input type="text" name="nombreTarea" ref={el => this.inputNombre = el} onChange={this.actualizarNombre.bind(this)}/>
             <button onClick={this.addTarea.bind(this)}>+</button>
             <br/>
+            
+            {
+                this.state.tareas.map((tarea)=>{
+                    return (
+                        <TareaList listado={tarea} key={tarea.id}/>
+                    )
+                })
+            }
+            
             
         </div>
         )
