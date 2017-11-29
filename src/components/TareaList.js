@@ -12,7 +12,6 @@ class TareaList extends Component{
     }
     finalizarTarea(id){
         store.dispatch(finalizarTarea(this.props.listado.id))
-        
     }
     render(){
         console.log(this.props)
