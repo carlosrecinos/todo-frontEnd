@@ -16,4 +16,10 @@ const eliminarTarea = id => {
         id
     }
 }
-export {addTarea,finalizarTarea,eliminarTarea}
+const fillTareas = tareas => {
+    return{
+      type: "FILL_TAREAS",
+      tareas
+    }
+  }
+export {addTarea,finalizarTarea,eliminarTarea,fillTareas}

@@ -25,7 +25,15 @@ const tareaReducer = (state,action)=>{
             })
         }
         
+    }else if(action.type==="FILL_TAREAS"){
+        console.log("state.tareas",state.tareas);
+        console.log("api",action);
+        return {
+            ...state,
+            tareas:state.tareas.concat(action.tareas)
+        }
     }
+
     return state;
 }
 export default tareaReducer;

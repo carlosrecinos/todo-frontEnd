@@ -2,7 +2,7 @@ const ADD_TAREA = "ADD_TAREA"
 const UPDATE_TAREA = "UPDATE_TAREA"
 const DELETE_TAREA = "DELETE_TAREA"
 const FINISH_TAREA = "FINISH_TAREA"
-const SET_VISIBILITY_FILTERS = "SET_VISIBILITY_FILTERS"
+const FILL_TAREAS = "FILL_TAREAS"
 
 
 const VisibilityFilters = {
@@ -10,6 +10,7 @@ const VisibilityFilters = {
   SHOW_FINISHED : "SHOW_FINISHED",
   SHOW_UNFINISHED : "SHOW_UNFINISHED"
 }
+
 
 
 function addTarea(tarea) {
@@ -39,7 +40,13 @@ function finishTarea(id){
     id
   }
 }
-
+function fillTareas(tareas){
+  console.log("ACTIONCREATOR: ",tareas)
+  return{
+    type:FILL_TAREAS,
+    tareas
+  }
+}
 function setVisibilityFilters(filter){
   return{
     type: S
@@ -51,5 +58,5 @@ export default actions = {
   updateTarea,
   deleteTarea,
   finishTarea,
-  setVisibilityFilters  
+  setVisibilityFilters
 }

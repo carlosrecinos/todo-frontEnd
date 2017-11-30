@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import store from '../store';
 import {finalizarTarea,eliminarTarea} from '../actionCreators';
 import { connect } from 'react-redux';
+import loadTareas from '../services';
 class TareaList extends Component{
     
     render(){
+        
         return (
+            
             <div >
-                <h5>ID: {this.props.listado.id}</h5>
-                <h5>Tarea: {this.props.listado.nombre}</h5>
-                <h5>Completado: {this.props.listado.completado.toString()}</h5>
+                <h5>ID: {this.props.listado._id}</h5>
+                <h5>Título: {this.props.listado.titulo}</h5>
+                <h5>Descripción: {this.props.listado.descripcion}</h5>
+                <h5>Autor: {this.props.listado.autor}</h5>
+                <h5>Entregado: {this.props.listado.entregado.toString()}</h5>
                 <button id={this.props.listado.id} onClick={() => this.props.finalizarTarea(this.props.listado.id)}>Finalizar Tarea</button>
                 <button id={this.props.listado.id} onClick={() => this.props.eliminarTarea(this.props.listado.id)}>Eliminar Tarea</button>
             </div>
@@ -24,6 +28,9 @@ const mapStateToProps=(store)=>{
 }
 const mapDispatchToProps=(dispatch)=>{
     return{
+        componentWillMount(){
+            tareas : loadTareas
+        },
         eliminarTarea: (id)=>{
             dispatch(eliminarTarea(id))
         },
