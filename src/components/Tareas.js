@@ -19,55 +19,22 @@ class Tareas extends Component {
         
         
     }
-    addTarea(tarea){
-        store.dispatch(addTarea(this.state.tarea))
+    addTarea(){
+        var tarea = {
+            id: this.inputId.value,
+            nombre: this.inputNombre.value,
+            completado:false
+        }
+        store.dispatch(addTarea(tarea))
         this.inputId.value="";
         this.inputNombre.value="";
-        this.setState({
-            tarea:{
-                ...this.state.tarea,
-                id:"",
-                nombre:"",
-                completado:""
-            }
-        })
     }
-    actualizarId(e){
-        this.setState({
-            tarea:{
-                ...this.state.tarea,
-                id: e.target.value,
-                completado: false
-            }
-        })
-    }
-    actualizarNombre(e){
-        this.setState({
-            tarea:{
-                ...this.state.tarea,
-                nombre: e.target.value
-            }
-        })
-    }
-    
-    /*componentWillMount(){
-        fetch('http://localhost:3005/tareas')
-        .then((respuesta)=>{
-            return respuesta.json();
-        })
-        .then((tareas)=>{
-            console.log(tareas);
-            this.setState({
-                tareas
-            })
-        })
-    }*/
   render() {
     return (
         <div>
             <h1>Lista de Tareas</h1>
-            ID: <input type="text" name="idTarea" ref={el => this.inputId = el} onChange={this.actualizarId.bind(this)}/><br/>
-            NOMBRE: <input type="text" name="nombreTarea" ref={el => this.inputNombre = el} onChange={this.actualizarNombre.bind(this)}/>
+            ID: <input type="text" name="idTarea" ref={el => this.inputId = el}/><br/>
+            NOMBRE: <input type="text" name="nombreTarea" ref={el => this.inputNombre = el}/>
             <button onClick={this.addTarea.bind(this)}>+</button>
             <br/>
             
@@ -82,36 +49,6 @@ class Tareas extends Component {
             
         </div>
         )
-    
-    /*
-    <TareaList listado={this.state.tareas}/>
-    if(this.state.tareas.length>0){
-        return (
-        <div>
-            <h1>Lista de Tareas</h1>
-            <TareaList listado={this.state.tareas}/>
-        </div>
-        )
-    }else if(this.state.tareas.length===0){
-        console.log(this.state.tareas);
-        return (
-            <div>
-                <h1>Prohibido el acceso</h1>
-            </div>
-            )
-    }else{
-        if(this.state.tareas.mensaje){
-            return (
-                <h1>{this.state.tareas.mensaje}</h1>
-            )
-        }
-        return (
-            <div>
-                <h1>Lista de Tareas</h1>
-                <h5>Cargando tareas...</h5>
-            </div>
-            )
-    }*/
     
   }
 }

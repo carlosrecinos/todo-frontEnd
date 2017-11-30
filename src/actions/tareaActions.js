@@ -51,5 +51,5 @@ export default actions = {
   updateTarea,
   deleteTarea,
   finishTarea,
-  setVisibilityFilters
+  setVisibilityFilters  
 }
