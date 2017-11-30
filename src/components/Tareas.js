@@ -25,26 +25,32 @@ class Tareas extends Component {
             <Col xs={12} md={4}>
                 <FormGroup >
                     <ControlLabel>ID</ControlLabel>
-                    <FormControl placeholder="ID"/>
+                    <FormControl inputRef={(ref) => {this.inputID = ref}} placeholder="ID"/>
                     <Row>
                         <Col md={6}>
                             <ControlLabel>Título</ControlLabel>
-                            <FormControl placeholder="Título"/>
+                            <FormControl inputRef={(ref) => {this.inputTitulo = ref}} placeholder="Título"/>
                         </Col>
                         <Col md={6}>
                             <ControlLabel>Autor</ControlLabel>
-                            <FormControl placeholder="Autor"/>
+                            <FormControl inputRef={(ref) => {this.inputAutor = ref}} placeholder="Autor"/>
                         </Col>
                     </Row>
                     <FormGroup controlId="formControlsTextarea">
                         <ControlLabel>Descripción</ControlLabel>
-                        <FormControl componentClass="textarea" placeholder="textarea" />
+                        <FormControl inputRef={(ref) => {this.inputDescripcion = ref}} componentClass="textarea" placeholder="textarea" />
                     </FormGroup>
                     <FormGroup controlId="formControlsTextarea">
                         <ControlLabel>Fecha de Entrega</ControlLabel><br/>
-                        <input type="date" ref={el => this.inputFecha = el}/>
+                        <input type="date" ref={el => this.inputFechaEntrega = el}/>
                     </FormGroup>
-                    <Button bsStyle="success">Agregar Tarea</Button>
+                    <Button onClick={()=>this.props.addTarea({
+                        _id: this.inputID.value,
+                        titulo: this.inputTitulo.value,
+                        autor: this.inputAutor.value,
+                        fechaEntrega: this.inputFechaEntrega.value,
+                        entregado: false
+                    })} bsStyle="success">Agregar Tarea</Button>
                 </FormGroup>
                 
             </Col>
