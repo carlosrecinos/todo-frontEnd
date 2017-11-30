@@ -26,11 +26,10 @@ const tareaReducer = (state,action)=>{
         }
         
     }else if(action.type==="FILL_TAREAS"){
-        console.log("state.tareas",state.tareas);
-        console.log("api",action);
+        console.log("action.tareas: ",action.tareas);
         return {
             ...state,
-            tareas:state.tareas.concat(action.tareas)
+            tareas: action.tareas.slice()
         }
     }
 

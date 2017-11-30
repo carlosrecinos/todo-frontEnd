@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Col, Button, ButtonGroup} from 'react-bootstrap';
 import {finalizarTarea,eliminarTarea} from '../actionCreators';
 import { connect } from 'react-redux';
 import loadTareas from '../services';
@@ -7,16 +8,18 @@ class TareaList extends Component{
     render(){
         
         return (
-            
-            <div >
+            <Col xs={4} md={4}>
+            <br/><br/>
                 <h5>ID: {this.props.listado._id}</h5>
                 <h5>Título: {this.props.listado.titulo}</h5>
                 <h5>Descripción: {this.props.listado.descripcion}</h5>
                 <h5>Autor: {this.props.listado.autor}</h5>
+                <h5>Fecha Entrega: {this.props.listado.fechaEntrega}</h5>
                 <h5>Entregado: {this.props.listado.entregado.toString()}</h5>
-                <button id={this.props.listado.id} onClick={() => this.props.finalizarTarea(this.props.listado.id)}>Finalizar Tarea</button>
-                <button id={this.props.listado.id} onClick={() => this.props.eliminarTarea(this.props.listado.id)}>Eliminar Tarea</button>
-            </div>
+                <Button bsStyle="success" id={this.props.listado.id} onClick={() => this.props.finalizarTarea(this.props.listado.id)}>Finalizar Tarea</Button>
+                <Button bsStyle="danger" id={this.props.listado.id} onClick={() => this.props.eliminarTarea(this.props.listado.id)}>Eliminar Tarea</Button>
+                
+            </Col>
             
         )
     }
