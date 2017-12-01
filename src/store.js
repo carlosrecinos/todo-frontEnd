@@ -10,7 +10,12 @@ import loadTareas from './services';
 
 
 export default createStore(tareaReducer,
-    {tareas: [],logged : true},
+    {
+        tareas: [],
+        logged : true,
+        showModalTareas:false,
+        tareaToUpdate:{}
+    },
     applyMiddleware(logger,thunk));
 
     

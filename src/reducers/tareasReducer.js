@@ -26,10 +26,19 @@ const tareaReducer = (state,action)=>{
         }
         
     }else if(action.type==="FILL_TAREAS"){
-        console.log("action.tareas: ",action.tareas);
         return {
             ...state,
             tareas: action.tareas
+        }
+    }else if(action.type==="CHANGE_MODAL_STATE"){
+        return{
+            ...state,
+            showModalTareas:!state.showModalTareas
+        }
+    }else if(action.type==="CHANGE_TAREA_TO_UPDATE"){
+        return{
+            ...state,
+            tareaToUpdate: action.tarea
         }
     }
     return state;

@@ -1,36 +1,55 @@
 import React, { Component } from 'react';
-import { Col, Button, ButtonGroup} from 'react-bootstrap';
-import {finalizarTarea,eliminarTarea} from '../actionCreators';
+import { Col, Button, ButtonGroup, Panel} from 'react-bootstrap';
+import {finalizarTarea,eliminarTarea,changeModalState,changeTareaToUpdate} from '../actionCreators';
 import { connect } from 'react-redux';
 import './css/style.css';
 import loadTareas from '../services';
 import deleteTareas from '../services';
 import True from '../components/global/images/true.png';
 import False from '../components/global/images/false.png';
+import ModalTareas from './ModalTareas';
 class TareaList extends Component{
     
     render(){
-        console.log(this.props.listado)
         return (
-            <Col xs={4} md={4}>
-            <br/><br/>
-                <h5>ID: {this.props.listado._id}</h5>
-                <h5>Título: {this.props.listado.titulo}</h5>
-                <h5>Descripción: {this.props.listado.descripcion}</h5>
-                <h5>Autor: {this.props.listado.autor}</h5>
-                <h5>Fecha Entrega: {this.props.listado.fechaEntrega}</h5>
-                <h5>Entregado: {this.props.listado.entregado ? <img className="entregado" src={True}/> :<img className="entregado" src={False}/>}</h5>
-                <Button bsStyle="success" id={this.props.listado._id} onClick={() => this.props.finalizarTarea(this.props.listado._id)}>Finalizar Tarea</Button>
-                <Button bsStyle="danger" id={this.props.listado._id} onClick={() => this.props.eliminarTarea(this.props.listado._id)}>Eliminar Tarea</Button>
+            <div>
                 
-            </Col>
+                <Col xs={4} md={4}>
+                <Panel header={this.props.listado.titulo} bsStyle="primary">
+                <h5>ID: {this.props.listado._id}</h5>
+                    <h5>Descripción: {this.props.listado.descripcion}</h5>
+                    <h5>Autor: {this.props.listado.autor}</h5>
+                    <h5>Fecha Entrega: {this.props.listado.fechaEntrega}</h5>
+                    <h5>Entregado: {this.props.listado.entregado ? <img className="entregado" src={True}/> :<img className="entregado" src={False}/>}</h5>
+                    <Button bsStyle="primary" onClick={()=>{this.props.changeModalState({
+                        _id:this.props.listado._id,
+                        titulo:this.props.listado.titulo,
+                        descripcion:this.props.listado.descripcion,
+                        autor:this.props.listado.autor,
+                        fechaEntrega: this.props.listado.fechaEntrega,
+                        entregado:this.props.listado.entregado
+                    })} } >Modificar Tarea</Button>
+                    <Button bsStyle="success" id={this.props.listado._id} onClick={() => this.props.finalizarTarea(this.props.listado._id)}>Finalizar Tarea</Button>
+                    <Button bsStyle="danger" id={this.props.listado._id} onClick={() => this.props.eliminarTarea(this.props.listado._id)}>Eliminar Tarea</Button>
+                    <ModalTareas tarea={{
+                        _id:this.props.tareaToUpdate._id,
+                        titulo:this.props.tareaToUpdate.titulo,
+                        descripcion:this.props.tareaToUpdate.descripcion,
+                        autor:this.props.tareaToUpdate.autor,
+                        fechaEntrega: this.props.tareaToUpdate.fechaEntrega,
+                        entregado:this.props.tareaToUpdate.entregado
+                    }} show={this.props.showModalTareas} onHide={this.props.changeModalState}/>
+                </Panel>
+                </Col>
+            </div>
             
         )
     }
 }
 const mapStateToProps=(store)=>{
     return{
-        tareas:store.tareas
+        showModalTareas:store.showModalTareas,
+        tareaToUpdate:store.tareaToUpdate
     }
 }
 const mapDispatchToProps=(dispatch)=>{
@@ -42,7 +61,12 @@ const mapDispatchToProps=(dispatch)=>{
             dispatch(eliminarTarea(id))
         },
         finalizarTarea: (_id)=>{
-            dispatch(deleteTareas(_id))
+            dispatch(finalizarTarea(_id))
+        },
+        changeModalState(tarea){
+            console.log("TAREA: ",tarea)
+            dispatch(changeTareaToUpdate(tarea))
+            dispatch(changeModalState());
         }
     }
 }

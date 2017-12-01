@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import TareaList from './TareaList';
-import store from '../store';
 import {addTarea, fillTareas} from '../actionCreators';
 import { connect } from 'react-redux';
-import loadTareas from '../services';
 import { FormGroup,FormControl,Grid,Row,HelpBlock,ControlLabel,Col,Button } from 'react-bootstrap';
 class Tareas extends Component {
 
@@ -48,6 +46,7 @@ class Tareas extends Component {
                         _id: this.inputID.value,
                         titulo: this.inputTitulo.value,
                         autor: this.inputAutor.value,
+                        descripcion: this.inputDescripcion.value,
                         fechaEntrega: this.inputFechaEntrega.value,
                         entregado: false
                     })} bsStyle="success">Agregar Tarea</Button>
