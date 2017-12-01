@@ -12,11 +12,12 @@ import Registrar from './Registrar'
 import { Grid } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { fillTareas } from '../actionCreators';
+
 class App extends Component {
-  
+
   render() {
     return (
-      
+
       <div className="App">
       <Header />
       <Switch>

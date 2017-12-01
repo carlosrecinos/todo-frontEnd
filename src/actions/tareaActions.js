@@ -1,3 +1,4 @@
+import axios from 'axios';
 const ADD_TAREA = "ADD_TAREA"
 const UPDATE_TAREA = "UPDATE_TAREA"
 const DELETE_TAREA = "DELETE_TAREA"
@@ -41,11 +42,7 @@ function finishTarea(id){
   }
 }
 function fillTareas(tareas){
-  console.log("ACTIONCREATOR: ",tareas)
-  return{
-    type:FILL_TAREAS,
-    tareas
-  }
+  
 }
 function setVisibilityFilters(filter){
   return{
@@ -53,10 +50,11 @@ function setVisibilityFilters(filter){
   }
 }
 
-export default actions = {
+export {
   addTarea,
   updateTarea,
   deleteTarea,
   finishTarea,
-  setVisibilityFilters
+  setVisibilityFilters,
+  fillTareas
 }

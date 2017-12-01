@@ -4,6 +4,7 @@ import {finalizarTarea,eliminarTarea} from '../actionCreators';
 import { connect } from 'react-redux';
 import './css/style.css';
 import loadTareas from '../services';
+import deleteTareas from '../services';
 import True from '../components/global/images/true.png';
 import False from '../components/global/images/false.png';
 class TareaList extends Component{
@@ -40,8 +41,8 @@ const mapDispatchToProps=(dispatch)=>{
         eliminarTarea: (id)=>{
             dispatch(eliminarTarea(id))
         },
-        finalizarTarea: (id)=>{
-            dispatch(finalizarTarea(id))
+        finalizarTarea: (_id)=>{
+            dispatch(deleteTareas(_id))
         }
     }
 }

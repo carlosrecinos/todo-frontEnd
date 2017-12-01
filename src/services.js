@@ -4,13 +4,10 @@ import store from './store';
 
 
 const loadTareas = (action) =>{
-    return axios.get('http://localhost:3005/tareas')
-    .then(response=>{
-        return response
-    })
+    
 }
 const deleteTarea = (action) =>{
-    return axios.delete('http://localhost:3005/tareas/'+action.id)
+    return axios.delete('https://api-rest-padawan.herokuapp.com/tareas/'+action.id)
     .then(response=>{
         return response
     })

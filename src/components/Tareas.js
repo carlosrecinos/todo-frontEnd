@@ -11,7 +11,7 @@ class Tareas extends Component {
         super(props)
       }
     componentWillMount(){
-        this.props.loadData()
+        this.props.loadData();
     }
    
   render() {
@@ -80,15 +80,11 @@ const mapStateToProps=(store)=>{
 }
 const mapDispatchToProps=(dispatch)=>{
     return{
-        loadData(){
-            var tareas = loadTareas();
-            tareas.then(response=>{
-                dispatch(fillTareas(response.data))
-            })
-            
-        },
         addTarea(tarea){
             dispatch(addTarea(tarea))
+        },
+        loadData(){
+            dispatch(fillTareas())
         }
     }
 }
