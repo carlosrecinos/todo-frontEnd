@@ -9,8 +9,11 @@ import Error404 from './Error404';
 import Tareas from './Tareas';
 import Login from './Login';
 import Registrar from './Registrar'
+import { Grid } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { fillTareas } from '../actionCreators';
 class App extends Component {
-
+  
   render() {
     return (
       

@@ -19,7 +19,7 @@ class Login extends Component{
                             <input type="password" placeholder="E-mail"/>
                             <input type="text" placeholder="Pass"/>
                             <button>Registrarse</button>
-                            <p className="message">Already registered? <Link to="/login"><a>Sign In</a></Link></p>
+                            <p className="message">Already registered? <Link to="/login">Sign In</Link></p>
                         </form>
                     </div>
                 </div>
