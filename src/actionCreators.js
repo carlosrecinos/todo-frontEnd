@@ -43,15 +43,13 @@ const fillTareas = () => {
       })
     }
   }
-  const updateTarea = (tarea) => {
+  const updateTarea = tarea => {
+      console.log("UPDATE",tarea._id)
     return dispatch =>{
-        //return axios.get('https://api-rest-padawan.herokuapp.com/tareas')
-      return axios.get('http://localhost:3005/tareas')
+      return axios.put('http://localhost:3005/tareas/'+tarea._id,tarea)
       .then(response=>{
-          dispatch({
-            type:"FILL_TAREAS",
-            tareas:response.data
-          })
+        dispatch(fillTareas())
+        dispatch(changeModalState())
       })
     }
   }

@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 class Header extends Component{
     
     render(){
-        console.log("LOGGED: ",this.props)
         return (
             <div className="Header">
                 <div className="Header-logo">

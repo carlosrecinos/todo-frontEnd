@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import TareaList from './TareaList';
 import {addTarea, fillTareas} from '../actionCreators';
 import { connect } from 'react-redux';
-import { FormGroup,FormControl,Grid,Row,HelpBlock,ControlLabel,Col,Button } from 'react-bootstrap';
+import { FormGroup,FormControl,Row,ControlLabel,Col,Button } from 'react-bootstrap';
 class Tareas extends Component {
 
-    constructor (props) {
-        super(props)
-      }
     componentWillMount(){
         this.props.loadData();
     }

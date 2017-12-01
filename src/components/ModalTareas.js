@@ -1,22 +1,22 @@
 import React,{Component}  from 'react'
 import {Modal} from 'react-bootstrap';
-import store from '../store';
 import { connect } from 'react-redux';
 import {updateTarea} from '../actionCreators';
-import { FormGroup,FormControl,Grid,Row,HelpBlock,ControlLabel,Col,Button } from 'react-bootstrap';
+import { FormGroup,FormControl,Row,ControlLabel,Col,Button } from 'react-bootstrap';
 class ModalTareas extends Component{
     componentWillMount(){
-      this.state={
-        tarea:{
-          
-        }
+      this.setState={
+        tarea:{}
       }
     }
-    changeState(){
-      this.setState
+    changeState(tarea){
+      this.setState({
+        tarea:{
+
+        }
+      })
     }
     render() {
-      console.log("props modal tareas",this.props)
       return (
         <Modal {...this.props} bsSize="large" aria-labelledby="contained-modal-title-lg">
           <Modal.Header closeButton>
@@ -25,24 +25,24 @@ class ModalTareas extends Component{
           <Modal.Body>
           <FormGroup >
                     <ControlLabel>ID</ControlLabel>
-                    <FormControl value={this.props.tarea._id} inputRef={(ref) => {this.inputID = ref}} placeholder="ID"/>
+                    <FormControl defaultValue={this.props.tarea._id} inputRef={(ref) => {this.inputID = ref}} placeholder="ID"/>
                     <Row>
                         <Col md={6}>
                             <ControlLabel>Título</ControlLabel>
-                            <FormControl value={this.props.tarea.titulo} inputRef={(ref) => {this.inputTitulo = ref}} placeholder="Título"/>
+                            <FormControl defaultValue={this.props.tarea.titulo} inputRef={(ref) => {this.inputTitulo = ref}} placeholder="Título"/>
                         </Col>
                         <Col md={6}>
                             <ControlLabel>Autor</ControlLabel>
-                            <FormControl value={this.props.tarea.autor} inputRef={(ref) => {this.inputAutor = ref}} placeholder="Autor"/>
+                            <FormControl defaultValue={this.props.tarea.autor} inputRef={(ref) => {this.inputAutor = ref}} placeholder="Autor"/>
                         </Col>
                     </Row>
                     <FormGroup controlId="formControlsTextarea">
                         <ControlLabel>Descripción</ControlLabel>
-                        <FormControl value={this.props.tarea.descripcion} inputRef={(ref) => {this.inputDescripcion = ref}} componentClass="textarea" placeholder="textarea" />
+                        <FormControl defaultValue={this.props.tarea.descripcion} inputRef={(ref) => {this.inputDescripcion = ref}} componentClass="textarea" placeholder="textarea" />
                     </FormGroup>
                     <FormGroup controlId="formControlsTextarea">
                         <ControlLabel>Fecha de Entrega</ControlLabel><br/>
-                        <input value={this.props.tarea.fechaEntrega} type="date" ref={el => this.inputFechaEntrega = el}/>
+                        <input defaultValue={this.props.tarea.fechaEntrega} type="date" ref={el => this.inputFechaEntrega = el}/>
                     </FormGroup>
                     
                     <Button onClick={()=>this.props.updateTarea({
@@ -52,7 +52,8 @@ class ModalTareas extends Component{
                         descripcion: this.inputDescripcion.value,
                         fechaEntrega: this.inputFechaEntrega.value,
                         entregado: false
-                    })} bsStyle="success">Agregar Tarea</Button>
+                    })} bsStyle="primary">Modificar Tarea</Button>&nbsp;&nbsp;
+                    <Button bsStyle="danger" onClick={this.props.onHide} >Cancelar</Button>
                 </FormGroup>
             
             </Modal.Body>
