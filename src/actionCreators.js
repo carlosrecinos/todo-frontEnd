@@ -1,7 +1,7 @@
 import axios from 'axios'
 const addTarea = tarea =>{
     return dispatch =>{
-      return axios.post('http://localhost:3005/tareas', {
+      return axios.post('https://api-rest-padawan.herokuapp.com/tareas', {
                 titulo: tarea.titulo,
                 descripcion: tarea.descripcion,
                 autor : tarea.autor,
@@ -17,7 +17,7 @@ const addTarea = tarea =>{
 }
 const finalizarTarea = id => {
     return dispatch =>{
-      return axios.put('http://localhost:3005/tareas/finalizar/'+id)
+      return axios.put('https://api-rest-padawan.herokuapp.com/tareas/finalizar/'+id)
       .then(response=>{
           dispatch(fillTareas())
       })
@@ -25,7 +25,11 @@ const finalizarTarea = id => {
 }
 const eliminarTarea = id => {
     return dispatch =>{
-      return axios.delete('http://localhost:3005/tareas/'+id)
+      return axios.delete('https://api-rest-padawan.herokuapp.com/tareas/'+id,{
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+          }
+      } )
       .then(response=>{
           dispatch(fillTareas())
       })
@@ -33,8 +37,8 @@ const eliminarTarea = id => {
 }
 const fillTareas = () => {
     return dispatch =>{
-        //return axios.get('https://api-rest-padawan.herokuapp.com/tareas')
-      return axios.get('http://localhost:3005/tareas')
+      return axios.get('https://api-rest-padawan.herokuapp.com/tareas')
+      //return axios.get('http://localhost:3005/tareas')
       .then(response=>{
           dispatch({
             type:"FILL_TAREAS",
@@ -46,7 +50,7 @@ const fillTareas = () => {
   const updateTarea = tarea => {
       console.log("UPDATE",tarea._id)
     return dispatch =>{
-      return axios.put('http://localhost:3005/tareas/'+tarea._id,tarea)
+      return axios.put('https://api-rest-padawan.herokuapp.com/tareas/'+tarea._id,tarea)
       .then(response=>{
         dispatch(fillTareas())
         dispatch(changeModalState())

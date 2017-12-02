@@ -36,7 +36,14 @@ class TareaList extends Component{
                         autor:this.props.tareaToUpdate.autor,
                         fechaEntrega: this.props.tareaToUpdate.fechaEntrega,
                         entregado:this.props.tareaToUpdate.entregado
-                    }} show={this.props.showModalTareas} onHide={this.props.changeModalState}/>
+                    }} show={this.props.showModalTareas} onHide={()=>{this.props.changeModalState({
+                        _id:this.props.tareaToUpdate._id,
+                        titulo:this.props.tareaToUpdate.titulo,
+                        descripcion:this.props.tareaToUpdate.descripcion,
+                        autor:this.props.tareaToUpdate.autor,
+                        fechaEntrega: this.props.tareaToUpdate.fechaEntrega,
+                        entregado:this.props.tareaToUpdate.entregado 
+                    })} }/>
                 </Panel>
                 </Col>
             </div>

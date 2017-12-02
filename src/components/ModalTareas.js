@@ -4,18 +4,7 @@ import { connect } from 'react-redux';
 import {updateTarea} from '../actionCreators';
 import { FormGroup,FormControl,Row,ControlLabel,Col,Button } from 'react-bootstrap';
 class ModalTareas extends Component{
-    componentWillMount(){
-      this.setState={
-        tarea:{}
-      }
-    }
-    changeState(tarea){
-      this.setState({
-        tarea:{
-
-        }
-      })
-    }
+    
     render() {
       return (
         <Modal {...this.props} bsSize="large" aria-labelledby="contained-modal-title-lg">
