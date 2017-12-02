@@ -6,19 +6,28 @@ import { FormGroup,FormControl,Row,ControlLabel,Col,Button } from 'react-bootstr
 class Tareas extends Component {
 
     componentWillMount(){
+        this.setState({
+            deleting:false,
+            cargandoData:true
+        })
         this.props.loadData();
+        
     }
    
   render() {
+      const deleting = ()=>{
+          this.setState({
+              deleting:true
+          })
+      }
     return (
         <div>
             
             <h1>Lista de Tareas</h1>
 
             <Row>
-            <Col xs={12} md={4}></Col>
             <Col xs={12} md={4}>
-                <FormGroup >
+            <FormGroup >
                     <ControlLabel>ID</ControlLabel>
                     <FormControl inputRef={(ref) => {this.inputID = ref}} placeholder="ID"/>
                     <Row>
@@ -48,20 +57,28 @@ class Tareas extends Component {
                         entregado: false
                     })} bsStyle="success">Agregar Tarea</Button>
                 </FormGroup>
-                
             </Col>
-            <Col xs={12} md={4}></Col>
-            </Row>
             
-            <Row>
+            <Col xs={12} md={8}>
+            {
+                this.state.deleting
+                ?
+                <h1>Borrando</h1>
+                :
+                <h1></h1>
+            }
             {
                 
+                
                 this.props.tareas.map((tarea)=>{
+                    
                     return (
-                        <TareaList listado={tarea} key={tarea._id}/>
+                        <TareaList borrando={deleting} listado={tarea} key={tarea._id}/>
                     )
                 })
             }
+            </Col>
+            
             </Row>
             
         </div>
@@ -81,7 +98,9 @@ const mapDispatchToProps=(dispatch)=>{
         },
         loadData(){
             dispatch(fillTareas())
+
         }
+        
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Tareas);

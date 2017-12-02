@@ -28,7 +28,10 @@ class TareaList extends Component{
                         entregado:this.props.listado.entregado
                     })} } >Modificar Tarea</Button>
                     <Button bsStyle="success" id={this.props.listado._id} onClick={() => this.props.finalizarTarea(this.props.listado._id)}>Finalizar Tarea</Button>
-                    <Button bsStyle="danger" id={this.props.listado._id} onClick={() => this.props.eliminarTarea(this.props.listado._id)}>Eliminar Tarea</Button>
+                    <Button bsStyle="danger"  id={this.props.listado._id} onClick={() => {
+                        this.props.eliminarTarea(this.props.listado._id)
+                        this.props.deleting
+                        }}>Eliminar Tarea</Button>
                     <ModalTareas tarea={{
                         _id:this.props.tareaToUpdate._id,
                         titulo:this.props.tareaToUpdate.titulo,
