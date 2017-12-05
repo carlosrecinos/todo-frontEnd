@@ -12,7 +12,9 @@ export default createStore(tareaReducer,
         tareas: [],
         logged : true,
         showModalTareas:false,
-        tareaToUpdate:{}
+        tareaToUpdate:{},
+        tareaFinalizada:false,
+        tareaEliminada:false
     },
     applyMiddleware(logger,thunk));
 

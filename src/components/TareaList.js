@@ -14,7 +14,9 @@ class TareaList extends Component{
         super(props)
         this.state={
             deleting:false,
-            finishing:false
+            finishing:false,
+            finished:false,
+            deleted:false
         }
     }
 
@@ -44,14 +46,15 @@ class TareaList extends Component{
     componentWillMount(){
         this.setState({
             deleting:false,
-            finishing:false
+            finishing:false,
+            
         })
     }
     deleting(){
         this.setState({
             deleting:true
         })
-        this.createNotification('info')
+        NotificationManager.warning('Tarea eliminada', 'La tarea fue eliminada', 3000);
     }
     finishing = () => {
         this.setState({
@@ -84,7 +87,11 @@ class TareaList extends Component{
                             <h5>Autor: {this.props.listado.autor}</h5>
                             <h5>Fecha Entrega: {this.props.listado.fechaEntrega}</h5>
                             <h5>Entregado: 
-                            
+                            {
+                                this.props.tareaFinalizada
+                                &&
+                                NotificationManager.success('Tarea Finalizada', 'La tarea se finalizó.')
+                            }
                             {
                                 this.props.listado.entregado 
                                 ? 
@@ -114,9 +121,6 @@ class TareaList extends Component{
                                 this.props.eliminarTarea(this.props.listado._id)
                                 this.deleting()
                                 }}>Eliminar Tarea</Button>
-                            <button className='btn btn-success'
-                            onClick={this.createNotification('success')}>Success
-                            </button>
                             {
                                 
                                 this.createNotification('success')
@@ -149,8 +153,10 @@ class TareaList extends Component{
 }
 const mapStateToProps=(store)=>{
     return{
-        showModalTareas:store.showModalTareas,
-        tareaToUpdate:store.tareaToUpdate
+        showModalTareas:    store.showModalTareas,
+        tareaToUpdate:      store.tareaToUpdate,
+        tareaFinalizada:    store.tareaFinalizada,
+        tareaEliminada:     store.tareaEliminada
     }
 }
 const mapDispatchToProps=(dispatch)=>{
