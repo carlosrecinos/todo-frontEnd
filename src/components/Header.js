@@ -20,9 +20,7 @@ class Header extends Component{
                 </Navbar.Header>
                 <Nav>
                 <NavItem>
-                    <Link to="/tareas">
-                        Tareas
-                    </Link>
+                    Tareas
                 </NavItem>
                 </Nav>
                 <Nav pullRight>

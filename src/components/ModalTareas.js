@@ -4,8 +4,25 @@ import { connect } from 'react-redux';
 import {updateTarea} from '../actionCreators';
 import { FormGroup,FormControl,Row,ControlLabel,Col,Button } from 'react-bootstrap';
 class ModalTareas extends Component{
-    
+        
     render() {
+        var timeStamp = Date.parse(this.props.tarea.fechaEntrega)
+        var date = new Date(timeStamp);
+        var dia = 0;
+        var mes = 0;
+        if(date.getDate()<10){
+            dia = "0"+(date.getDate()+1)
+        }else{
+            dia = (date.getDate()+1)
+        }
+
+
+        if(date.getMonth()<9){
+            mes = "0"+(date.getMonth()+1)
+        }else{
+            mes = (date.getMonth()+1)
+        }
+        var fecha = date.getFullYear() + '-' + mes + '-' + dia;
       return (
         <Modal {...this.props} bsSize="large" aria-labelledby="contained-modal-title-lg">
           <Modal.Header closeButton>
@@ -31,7 +48,7 @@ class ModalTareas extends Component{
                     </FormGroup>
                     <FormGroup controlId="formControlsTextarea">
                         <ControlLabel>Fecha de Entrega</ControlLabel><br/>
-                        <input defaultValue={this.props.tarea.fechaEntrega} type="date" ref={el => this.inputFechaEntrega = el}/>
+                        <input defaultValue={fecha}  type="date" ref={el => this.inputFechaEntrega = el}/>
                     </FormGroup>
                     
                     <Button onClick={()=>this.props.updateTarea({

@@ -6,3 +6,10 @@
     width: 25px;
     height: 25px;
 }
+
+.panelTarea{
+    min-height: 300px;
+}
+.img-entregado{
+    display: inline-block
+}
