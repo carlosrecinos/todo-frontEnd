@@ -40,6 +40,11 @@ const tareaReducer = (state,action)=>{
             ...state,
             tareaToUpdate: action.tarea
         }
+    }else if(action.type==="TAREA_FINALIZADA"){
+        return{
+            ...state,
+            tareaFinalizada:true
+        }
     }
     return state;
 }

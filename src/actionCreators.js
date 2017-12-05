@@ -20,6 +20,9 @@ const finalizarTarea = id => {
       return axios.put('https://api-rest-padawan.herokuapp.com/tareas/finalizar/'+id)
       .then(response=>{
           dispatch(fillTareas())
+          if(response.data.mensaje){
+              console.log(response.data.mensaje)
+          }
       })
     }
 }
