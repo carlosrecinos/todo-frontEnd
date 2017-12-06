@@ -41,16 +41,10 @@ class Tareas extends Component {
                 <Row>
                     <Col xs={12} md={4}>
                         <FormGroup >
-                            <ControlLabel>ID</ControlLabel>
-                            <FormControl inputRef={(ref) => { this.inputID = ref }} placeholder="ID" />
                             <Row>
-                                <Col md={6}>
+                                <Col md={12}>
                                     <ControlLabel>Título</ControlLabel>
                                     <FormControl inputRef={(ref) => { this.inputTitulo = ref }} placeholder="Título" />
-                                </Col>
-                                <Col md={6}>
-                                    <ControlLabel>Autor</ControlLabel>
-                                    <FormControl inputRef={(ref) => { this.inputAutor = ref }} placeholder="Autor" />
                                 </Col>
                             </Row>
                             <FormGroup controlId="formControlsTextarea">
@@ -62,9 +56,7 @@ class Tareas extends Component {
                                 <input type="date" ref={el => this.inputFechaEntrega = el} />
                             </FormGroup>
                             <Button onClick={() => this.props.addTarea({
-                                _id: this.inputID.value,
                                 titulo: this.inputTitulo.value,
-                                autor: this.inputAutor.value,
                                 descripcion: this.inputDescripcion.value,
                                 fechaEntrega: this.inputFechaEntrega.value,
                                 entregado: false
@@ -94,10 +86,7 @@ class Tareas extends Component {
                         <h1></h1>
                     }
                     {
-                        this.props.logged
-                        ?
-                        <h1>{this.props.error} </h1>
-                        :
+                        
                         this.props.tareas.map((tarea) => {
 
                             return (

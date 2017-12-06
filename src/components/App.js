@@ -9,7 +9,7 @@ import Tareas from './Tareas';
 import Login from './Login';
 import Registrar from './Registrar'
 import {NotificationContainer} from 'react-notifications';
-
+import Authenticate from '../requireAuth';
 class App extends Component {
 
   render() {
@@ -20,7 +20,7 @@ class App extends Component {
       <Header />
       <Switch>
         <Route exact path="/" component={Main}/>
-        <Route path="/tareas" component={Tareas}/>
+        <Route path="/tareas" component={Authenticate(Tareas)}/>
         <Route path="/login" component={Login}/>
         <Route path="/registrar" component={Registrar}/>
         <Route component={Error404}/>

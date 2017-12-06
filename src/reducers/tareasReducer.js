@@ -50,10 +50,31 @@ const tareaReducer = (state,action)=>{
             ...state,
             error: action.error
         }
+    }else if(action.type==="ERROR_LOGUEARSE"){
+        return{
+            ...state,
+            error: action.error
+        }
     }else if(action.type==="LOGGED_IN"){
         return{
             ...state,
             logged:true
+        }
+    }else if(action.type==="SET_USUARIO_ACTUAL"){
+        return{
+            ...state,
+            usuarioActual:action.usuario,
+            logged:action.logged
+        }
+    }else if(action.type==="LOGGED"){
+        return{
+            ...state,
+            logged:action.logged
+        }
+    }else if(action.type==="LOGOUT"){
+        return{
+            ...state,
+            logged:action.logged
         }
     }
     return state;

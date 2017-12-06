@@ -12,7 +12,8 @@ export default createStore(tareaReducer,
         tareaToUpdate:{},
         tareaFinalizada:false,
         tareaEliminada:false,
-        error:""
+        error:"",
+        usuarioActual:{}
     },
     applyMiddleware(logger,thunk));
 
