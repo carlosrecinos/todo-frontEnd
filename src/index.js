@@ -6,6 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
+import setAuthorizationToken from './setAuthorizationToken';
 
 ReactDOM.render(
     <Provider store={store}>

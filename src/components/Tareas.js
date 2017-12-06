@@ -74,7 +74,7 @@ class Tareas extends Component {
 
                     <Col xs={12} md={8}>
                     {
-                        this.state.cargandoData
+                        this.state.cargandoData && this.props.logged
                         ?
                         <div className="sk-circle">
                             <div className="sk-circle1 sk-child"></div>
@@ -93,15 +93,18 @@ class Tareas extends Component {
                         :
                         <h1></h1>
                     }
-                        {
-                            
-                            this.props.tareas.map((tarea) => {
+                    {
+                        this.props.logged
+                        ?
+                        <h1>{this.props.error} </h1>
+                        :
+                        this.props.tareas.map((tarea) => {
 
-                                return (
-                                    <TareaList borrando={deleting} cargado={cargado} listado={tarea} key={tarea._id} />
-                                )
-                            })
-                        }
+                            return (
+                                <TareaList borrando={deleting} cargado={cargado} listado={tarea} key={tarea._id} />
+                            )
+                        })
+                    }
                     </Col>
 
                 </Row>
@@ -113,7 +116,9 @@ class Tareas extends Component {
 }
 const mapStateToProps = (store) => {
     return {
-        tareas: store.tareas
+        tareas: store.tareas,
+        error: store.error,
+        logged: store.logged
     }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -8,6 +8,7 @@ import Error404 from './Error404';
 import Tareas from './Tareas';
 import Login from './Login';
 import Registrar from './Registrar'
+import {NotificationContainer} from 'react-notifications';
 
 class App extends Component {
 
@@ -15,6 +16,7 @@ class App extends Component {
     return (
 
       <div className="App">
+      <NotificationContainer/>
       <Header />
       <Switch>
         <Route exact path="/" component={Main}/>

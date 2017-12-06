@@ -45,6 +45,16 @@ const tareaReducer = (state,action)=>{
             ...state,
             tareaFinalizada:true
         }
+    }else if(action.type==="ERROR_MOSTRAR_TAREAS"){
+        return{
+            ...state,
+            error: action.error
+        }
+    }else if(action.type==="LOGGED_IN"){
+        return{
+            ...state,
+            logged:true
+        }
     }
     return state;
 }

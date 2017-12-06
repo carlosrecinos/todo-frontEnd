@@ -3,6 +3,7 @@ import {Modal} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import {updateTarea} from '../actionCreators';
 import { FormGroup,FormControl,Row,ControlLabel,Col,Button } from 'react-bootstrap';
+import { NotificationManager } from 'react-notifications';
 class ModalTareas extends Component{
         
     render() {
@@ -79,7 +80,9 @@ const mapDispatchToProps=(dispatch)=>{
     return{
         updateTarea(tarea){
             dispatch(updateTarea(tarea));
+            NotificationManager.info('Tarea modificada', 'La tarea fue modificada');
         }
+
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ModalTareas);

@@ -3,6 +3,7 @@ import logo from './global/images/korinver_logo.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Navbar,NavItem,Nav } from 'react-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
 import './css/Header.css';
 
 
@@ -14,26 +15,29 @@ class Header extends Component{
                 <Navbar.Header>
                     <Navbar.Brand>
                         <Link to="/">
-                            <img className="Header-logo" src={logo}></img>
+                            Korinver - Home
                         </Link>
                     </Navbar.Brand>
                 </Navbar.Header>
                 <Nav>
-                <NavItem>
-                    Tareas
-                </NavItem>
+                <LinkContainer to="/tareas">
+                    <NavItem>
+                        Tareas
+                    </NavItem>
+                </LinkContainer>
                 </Nav>
                 <Nav pullRight>
                     
                     {
-                        this.props.logged 
+                        !this.props.logged 
                         ? 
-                        
-                            <NavItem>
-                                <Link to="/login">
-                                    Iniciar Sesión
-                                </Link>
-                            </NavItem>
+
+                            <LinkContainer to="/login">
+                                <NavItem>
+                                        Iniciar Sesión
+                                </NavItem>
+                            </LinkContainer>
+                            
                         
                         :
                         <NavItem>

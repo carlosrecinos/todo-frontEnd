@@ -140,7 +140,7 @@ class TareaList extends Component{
                                 fechaEntrega: this.props.tareaToUpdate.fechaEntrega,
                                 entregado:this.props.tareaToUpdate.entregado 
                             })} }/>
-                            <NotificationContainer/>
+                            
                         </div>
                     }
                     </Panel>

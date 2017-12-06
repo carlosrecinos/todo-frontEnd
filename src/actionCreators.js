@@ -1,7 +1,8 @@
-import axios from 'axios'
+import axios from 'axios';
+import setAuthorizationToken from './setAuthorizationToken';
 const addTarea = tarea =>{
     return dispatch =>{
-      return axios.post('https://api-rest-padawan.herokuapp.com/tareas', {
+      return axios.post('http://localhost:3005/tareas', {
                 titulo: tarea.titulo,
                 descripcion: tarea.descripcion,
                 autor : tarea.autor,
@@ -11,9 +12,25 @@ const addTarea = tarea =>{
             .then(response=>{
                 dispatch(fillTareas())
             })
-            
     }
-    
+}
+const logIn = usuario =>{
+    return dispatch => {
+      return axios.post('https://api-rest-padawan.herokuapp.com/login', {
+                email: usuario.email,
+                pass: usuario.pass
+            })
+            .then(response=>{
+                const token = response.data.token;
+                localStorage.setItem('jwtToken',token);
+                setAuthorizationToken(token);
+                dispatch({
+                    type:"LOGGED_IN"
+                })
+            }).catch(error=>{
+                console.log("ERROR: ",error.response)
+            })
+    }
 }
 const finalizarTarea = id => {
     return dispatch =>{
@@ -28,7 +45,7 @@ const finalizarTarea = id => {
 }
 const eliminarTarea = id => {
     return dispatch =>{
-      return axios.delete('https://api-rest-padawan.herokuapp.com/tareas/'+id,{
+      return axios.delete('http://localhost:3005/tareas'+id,{
         headers: {
             'Access-Control-Allow-Origin': '*',
           }
@@ -40,13 +57,22 @@ const eliminarTarea = id => {
 }
 const fillTareas = () => {
     return dispatch =>{
-      return axios.get('https://api-rest-padawan.herokuapp.com/tareas')
+      return axios.get('http://localhost:3005/tareas')
       //return axios.get('http://localhost:3005/tareas')
       .then(response=>{
-          dispatch({
-            type:"FILL_TAREAS",
-            tareas:response.data
-          })
+          if(response.data.mensaje){
+            dispatch({
+                type:"ERROR_MOSTRAR_TAREAS",
+                error:response.data.mensaje
+              })
+          }else{
+            dispatch({
+                type:"FILL_TAREAS",
+                tareas:response.data
+              })
+          }
+      }).catch(error=>{
+        console.log(error)
       })
     }
   }
@@ -71,4 +97,12 @@ const fillTareas = () => {
         tarea
     };
 }
-export {addTarea,finalizarTarea,eliminarTarea,fillTareas,changeModalState,updateTarea,changeTareaToUpdate}
+export {addTarea,
+    finalizarTarea,
+    eliminarTarea,
+    fillTareas,
+    changeModalState,
+    updateTarea,
+    changeTareaToUpdate,
+    logIn
+}

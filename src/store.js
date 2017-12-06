@@ -3,18 +3,16 @@ import tareaReducer from './reducers/tareasReducer';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
-    
-
-
 
 export default createStore(tareaReducer,
     {
         tareas: [],
-        logged : true,
+        logged : false,
         showModalTareas:false,
         tareaToUpdate:{},
         tareaFinalizada:false,
-        tareaEliminada:false
+        tareaEliminada:false,
+        error:""
     },
     applyMiddleware(logger,thunk));
 
