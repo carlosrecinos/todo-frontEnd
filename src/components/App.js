@@ -10,6 +10,8 @@ import Login from './Login';
 import Registrar from './Registrar'
 import {NotificationContainer} from 'react-notifications';
 import Authenticate from '../requireAuth';
+import Perfil from './Perfil';
+
 class App extends Component {
 
   render() {
@@ -21,6 +23,7 @@ class App extends Component {
       <Switch>
         <Route exact path="/" component={Main}/>
         <Route path="/tareas" component={Authenticate(Tareas)}/>
+        <Route path="/perfil" component={Authenticate(Perfil)}/>
         <Route path="/login" component={Login}/>
         <Route path="/registrar" component={Registrar}/>
         <Route component={Error404}/>

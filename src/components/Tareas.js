@@ -83,12 +83,13 @@ class Tareas extends Component {
                             <div className="sk-circle12 sk-child"></div>
                         </div>
                         :
-                        <h1></h1>
+                        <h1> </h1>
                     }
                     {
                         
+                        this.props.tareas.length>0
+                        &&
                         this.props.tareas.map((tarea) => {
-
                             return (
                                 <TareaList borrando={deleting} cargado={cargado} listado={tarea} key={tarea._id} />
                             )

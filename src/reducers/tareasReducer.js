@@ -74,7 +74,8 @@ const tareaReducer = (state,action)=>{
     }else if(action.type==="LOGOUT"){
         return{
             ...state,
-            logged:action.logged
+            logged:action.logged,
+            tareas: action.tareas
         }
     }
     return state;

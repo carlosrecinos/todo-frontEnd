@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import { connect } from 'react-redux';
 import { logIn } from '../actionCreators';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 class Login extends Component{
 
 
@@ -23,7 +23,6 @@ class Login extends Component{
         }
     }
     componentWillUpdate(nextProps){
-        console.log("Next: ",nextProps)
         if(nextProps.logged){
             this.context.router.history.push('/');
         }
@@ -49,6 +48,7 @@ class Login extends Component{
             NotificationManager.error('Debe completar los campos', 'Campos inválidos', 5000, () => {
                 this.inputUsername.focus()
               });
+            this.inputUsername.focus()
         }
     }
 
@@ -74,9 +74,11 @@ class Login extends Component{
         )
     }
 }
+
 Login.contextTypes = {
     router : PropTypes.object.isRequired
 }
+
 const mapStateToProps=(store)=>{
     return{
         logged:store.logged

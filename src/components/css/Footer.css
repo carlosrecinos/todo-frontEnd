@@ -1,16 +1,4 @@
-.Footer{
-    margin-top: 0px;
-    width: 100%;
-    height: 200px;
-    background-color: rgb(31, 105, 67);
+.texto{
+    margin-bottom: 100px;
+    color:gray
 }
-.Footer-contenido{
-    margin: 0px auto;
-    height: 100%;
-    width: 80%;
-}
-.Footer-contenido p{
-    text-align: center;
-    color: black;
-}
-

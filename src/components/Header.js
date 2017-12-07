@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './global/images/korinver_logo.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Navbar,NavItem,Nav,NavDropdown,MenuItem } from 'react-bootstrap';
@@ -17,10 +16,15 @@ class Header extends Component{
     render(){
         const userHeader = (
                 <Nav pullRight>
-                    <NavDropdown eventKey={3} title={this.props.usuarioActual.nombre} id="basic-nav-dropdown">
-                        <MenuItem eventKey={3.1}>Perfil</MenuItem>
-                        <LinkContainer to="/tareas">
-                            <MenuItem eventKey={3.2}>Mis tareas</MenuItem>
+                    <LinkContainer to="/tareas">
+                        <NavItem>
+                            Tareas
+                        </NavItem>
+                    </LinkContainer>
+                    
+                    <NavDropdown eventKey={3} title={this.props.usuarioActual.nombre ? this.props.usuarioActual.nombre : ""} id="basic-nav-dropdown">
+                        <LinkContainer to="/perfil">
+                            <MenuItem eventKey={3.1}>Perfil</MenuItem>
                         </LinkContainer>
                         <MenuItem eventKey={3.2} onClick={this.props.logOut}>Cerrar Sesión</MenuItem>
                     </NavDropdown>

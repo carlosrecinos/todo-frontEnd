@@ -3,7 +3,6 @@ import {Modal} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import {updateTarea} from '../actionCreators';
 import { FormGroup,FormControl,Row,ControlLabel,Col,Button } from 'react-bootstrap';
-import { NotificationManager } from 'react-notifications';
 class ModalTareas extends Component{
         
     render() {
@@ -31,16 +30,14 @@ class ModalTareas extends Component{
           </Modal.Header>
           <Modal.Body>
           <FormGroup >
-                    <ControlLabel>ID</ControlLabel>
-                    <FormControl defaultValue={this.props.tarea._id} inputRef={(ref) => {this.inputID = ref}} placeholder="ID"/>
                     <Row>
-                        <Col md={6}>
+                        <Col md={12}>
+                            <ControlLabel>ID</ControlLabel>
+                            <FormControl defaultValue={this.props.tarea._id} inputRef={(ref) => {this.inputID = ref}} placeholder="ID"/>
+                        </Col>
+                        <Col md={12}>
                             <ControlLabel>Título</ControlLabel>
                             <FormControl defaultValue={this.props.tarea.titulo} inputRef={(ref) => {this.inputTitulo = ref}} placeholder="Título"/>
-                        </Col>
-                        <Col md={6}>
-                            <ControlLabel>Autor</ControlLabel>
-                            <FormControl defaultValue={this.props.tarea.autor} inputRef={(ref) => {this.inputAutor = ref}} placeholder="Autor"/>
                         </Col>
                     </Row>
                     <FormGroup controlId="formControlsTextarea">
@@ -55,7 +52,6 @@ class ModalTareas extends Component{
                     <Button onClick={()=>this.props.updateTarea({
                         _id: this.inputID.value,
                         titulo: this.inputTitulo.value,
-                        autor: this.inputAutor.value,
                         descripcion: this.inputDescripcion.value,
                         fechaEntrega: this.inputFechaEntrega.value,
                         entregado: false
@@ -80,7 +76,6 @@ const mapDispatchToProps=(dispatch)=>{
     return{
         updateTarea(tarea){
             dispatch(updateTarea(tarea));
-            NotificationManager.info('Tarea modificada', 'La tarea fue modificada');
         }
 
     }

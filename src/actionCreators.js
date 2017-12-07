@@ -1,11 +1,9 @@
 import axios from 'axios';
 import setAuthorizationToken from './setAuthorizationToken';
 import { NotificationManager } from 'react-notifications';
-import jwt from 'jwt-simple'
-import jwt2 from 'jsonwebtoken'
 const addTarea = tarea =>{
     return dispatch =>{
-      return axios.post('http://localhost:3005/tareas', {
+      return axios.post('https://api-rest-padawan.herokuapp.com/tareas', {
                 titulo: tarea.titulo,
                 descripcion: tarea.descripcion,
                 autor : tarea.autor,
@@ -13,34 +11,35 @@ const addTarea = tarea =>{
 
             })
             .then(response=>{
-                dispatch(fillTareas())
+                if(response.data.mensaje){
+                    dispatch(fillTareas())
+                    NotificationManager.success("Tarea insertada", "Tarea agregada")
+                }else{
+                    NotificationManager.error(response.data.error, "Error")
+                }
+            }).catch((error)=>{
+                NotificationManager.error("Error")
             })
     }
 }
 const logIn = usuario =>{
     return dispatch => {
-      return axios.post('http://localhost:3005/login', {
+      return axios.post('https://api-rest-padawan.herokuapp.com/login', {
                 email: usuario.email,
                 pass: usuario.pass
             })
             .then(response=>{
                 if(response.data.mensaje){
-                    dispatch({
-                        type:"ERROR_LOGUEARSE",
-                        error:response.data.mensaje
-                    })
-                    NotificationManager.error(response.data.mensaje, "Error", 5000, () => {})
+                    NotificationManager.error(response.data.mensaje, "Error")
                   
                 }else{
                     const token = response.data.token;
                     localStorage.setItem('jwtToken',token);
                     setAuthorizationToken(token);
-                    dispatch({
-                        type:"LOGGED_IN"
-                    })
-                    console.log("JSON: ",jwt2.decode(token))
                     dispatch(setUsuarioActual(response.data.usuario))
                 }
+            }).catch((error)=>{
+                NotificationManager.error("Error de conexión")
             })
     }
 }
@@ -59,13 +58,14 @@ const logOut = ()=>{
         dispatch(setUsuarioActual({}));
         dispatch({
             type:"LOGOUT",
-            logged:false
+            logged:false,
+            tareas:[]
         })
     }
 }
 const registrar = usuario => {
     return dispatch =>{
-      return axios.post('http://localhost:3005/registrar',{
+      return axios.post('https://api-rest-padawan.herokuapp.com/registrar',{
           nombre:usuario.nombre,
           email:usuario.email,
           pass: usuario.pass
@@ -83,33 +83,37 @@ const registrar = usuario => {
 }
 const finalizarTarea = id => {
     return dispatch =>{
-      return axios.put('http://localhost:3005/tareas/finalizar/'+id)
+      return axios.put('https://api-rest-padawan.herokuapp.com/tareas/finalizar/'+id)
       .then(response=>{
-          dispatch(fillTareas())
-          if(response.data.mensaje){
-              console.log(response.data.mensaje)
+          
+          if(response.data.error){
+                NotificationManager.error(response.data.error, "Error");
+          }else{
+                dispatch(fillTareas());
+                NotificationManager.info("Tarea Finalizada", "Tarea finalizada");
           }
       })
     }
 }
 const eliminarTarea = id => {
     return dispatch =>{
-      return axios.delete('http://localhost:3005/tareas/'+id)
+      return axios.delete('https://api-rest-padawan.herokuapp.com/login/'+id)
       .then(response=>{
-          dispatch(fillTareas())
+          if(response.data.error){
+            NotificationManager.error(response.data.error, "Error");
+          }else{
+            dispatch(fillTareas())
+            NotificationManager.warning('Tarea eliminada', 'La tarea fue eliminada');
+          }
       })
     }
 }
 const fillTareas = () => {
     return dispatch =>{
-      return axios.get('http://localhost:3005/tareas')
+      return axios.get('https://api-rest-padawan.herokuapp.com/tareas')
       .then(response=>{
-          if(response.data.mensaje){
-            dispatch({
-                type:"ERROR_MOSTRAR_TAREAS",
-                error:response.data.mensaje
-              })
-              NotificationManager.error('Error', response.data.mensaje, 5000, () => {})
+          if(response.data.error){
+              NotificationManager.error(response.data.mensaje, "Error");
           }else{
             dispatch({
                 type:"FILL_TAREAS",
@@ -124,10 +128,17 @@ const fillTareas = () => {
   const updateTarea = tarea => {
       console.log("UPDATE",tarea._id)
     return dispatch =>{
-      return axios.put('http://localhost:3005/tareas/'+tarea._id,tarea)
+      return axios.put('https://api-rest-padawan.herokuapp.com/login/'+tarea._id,tarea)
       .then(response=>{
-        dispatch(fillTareas())
-        dispatch(changeModalState())
+          if(response.data.error){
+            NotificationManager.error(response.data.error, "Error");
+          }else{
+            dispatch(fillTareas())
+            dispatch(changeModalState())
+            NotificationManager.info("Tarea modificada");
+          }
+        
+        
       })
     }
   }

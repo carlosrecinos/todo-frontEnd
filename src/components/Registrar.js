@@ -24,7 +24,7 @@ class Registrar extends Component{
         let email = this.inputEmail.value;
         let pass1 = this.inputPass.value;
         let pass2 = this.inputConfirmPass.value;
-        if(pass1!="" && pass2!="" && nombre != "" && email != ""){
+        if(pass1 !=="" && pass2 !== "" && nombre !== "" && email !== ""){
             if(pass1===pass2){
                 this.props.registrarse({
                     nombre,

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
+import { Navbar } from 'react-bootstrap';
 import './css/Footer.css';
-
 class Footer extends Component{
     
     
     render(){
         return(
-            <footer className="Footer">
+            <Navbar inverse className="Footer">
                 <div className="Footer-contenido">
-                    <h1>Korinver {(new Date()).getFullYear()}</h1>
+                    <h1 className="texto">Korinver {(new Date()).getFullYear()}</h1>
                 </div>
-            </footer>
+            </Navbar>
         )
     }
 }
