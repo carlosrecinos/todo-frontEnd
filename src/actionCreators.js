@@ -97,7 +97,7 @@ const finalizarTarea = id => {
 }
 const eliminarTarea = id => {
     return dispatch =>{
-      return axios.delete('https://api-rest-padawan.herokuapp.com/login/'+id)
+      return axios.delete('https://api-rest-padawan.herokuapp.com/tareas/'+id)
       .then(response=>{
           if(response.data.error){
             NotificationManager.error(response.data.error, "Error");
