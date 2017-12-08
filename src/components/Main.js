@@ -8,7 +8,8 @@ class Main extends Component{
             <Grid>
                 <div className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Bienvenido al sistema de tareas de Korinver</h1>
+                    <h1>Bienvenido al toDo</h1>
+                    <br/><br/><br/>
                 </div>
             </Grid>
         )

@@ -16,7 +16,7 @@ class Header extends Component{
     render(){
         const userHeader = (
                 <Nav pullRight>
-                    <LinkContainer to="/tareas">
+                    <LinkContainer  to="/tareas">
                         <NavItem>
                             Tareas
                         </NavItem>
@@ -30,12 +30,12 @@ class Header extends Component{
         )
         const invitadoHeader = (
             <Nav pullRight>
-                <LinkContainer to="/login">
+                <LinkContainer  to="/login">
                     <NavItem>
                         Iniciar Sesión
                     </NavItem>
                 </LinkContainer>
-                <LinkContainer to="/registrar">
+                <LinkContainer  to="/registrar">
                     <NavItem>
                         Registrarse
                     </NavItem>

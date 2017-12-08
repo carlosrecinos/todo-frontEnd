@@ -12,13 +12,13 @@ import {NotificationContainer} from 'react-notifications';
 import Authenticate from '../requireAuth';
 
 class App extends Component {
-
+  
   render() {
     return (
 
       <div className="App">
       <NotificationContainer/>
-      <Header />
+      <Header/>
       <Switch>
         <Route exact path="/" component={Main}/>
         <Route path="/tareas" component={Authenticate(Tareas)}/>

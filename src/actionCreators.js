@@ -76,7 +76,7 @@ const registrar = usuario => {
           }
           if(response.data.mensaje){
             dispatch(logIn(usuario));
-            NotificationManager.success("Usuario registrado", "Bienvenido a Korinver "+ usuario.nombre);
+            NotificationManager.success("Usted se ha registrado", "Bienvenido al sitema de tareas "+ usuario.nombre);
           }
       })
     }
@@ -115,13 +115,20 @@ const fillTareas = () => {
           if(response.data.error){
               NotificationManager.error(response.data.mensaje, "Error");
           }else{
-            dispatch({
-                type:"FILL_TAREAS",
-                tareas:response.data
-              })
+            if(response.data.length>0){
+                dispatch({
+                    type:"FILL_TAREAS",
+                    tareas:response.data
+                  })
+            }else{
+                dispatch({
+                    type:"FILL_TAREAS",
+                    tareas:response.data
+                  })
+                NotificationManager.warning("","Usted no tiene tareas");
+            }
           }
       }).catch(error=>{
-        console.log(error)
       })
     }
   }
@@ -147,6 +154,18 @@ const fillTareas = () => {
           type:"CHANGE_MODAL_STATE"
       };
   }
+  const showCompleted = () =>{
+      return {
+          type:"SHOW_COMPLETED"
+      }
+  }
+
+  const showUnCompleted = () =>{
+    return {
+        type:"SHOW_UNCOMPLETED"
+    }
+}
+
   const changeTareaToUpdate = (tarea) =>{
     return {
         type:"CHANGE_TAREA_TO_UPDATE",
@@ -163,5 +182,7 @@ export {addTarea,
     logIn,
     setUsuarioActual,
     logOut,
-    registrar
+    registrar,
+    showCompleted,
+    showUnCompleted
 }

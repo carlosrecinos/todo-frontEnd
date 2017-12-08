@@ -4,14 +4,37 @@ import { addTarea, fillTareas } from '../actionCreators';
 import { connect } from 'react-redux';
 import './css/Loading.css';
 import { FormGroup, FormControl, Row, ControlLabel, Col, Button } from 'react-bootstrap';
+import { NotificationManager } from 'react-notifications';
+
 class Tareas extends Component {
 
+    validar(){
+        if(this.inputTitulo.value === "" || 
+            this.inputDescripcion.value === "" ||
+            this.inputFechaEntrega.value === ""){
+                this.inputTitulo.focus()
+             NotificationManager.error("","Complete los campos para agregar tarea")
+        }else{
+            this.props.addTarea({
+                titulo: this.inputTitulo.value,
+                descripcion: this.inputDescripcion.value,
+                fechaEntrega: this.inputFechaEntrega.value,
+                entregado: false
+            })
+
+            this.inputTitulo.value = "";
+            this.inputDescripcion.value = "";
+            this.inputFechaEntrega.value = "";
+        }
+    }
     componentWillMount() {
         this.setState({
             deleting: false,
             cargandoData: false
         })
-        this.props.loadData();
+        if(this.props.logged){
+            this.props.loadData();
+        }
         this.setState({
             cargandoData: true
         })
@@ -36,7 +59,6 @@ class Tareas extends Component {
 
         return (
             <div>
-
                 <h1>Lista de Tareas</h1>
                 <Row>
                     <Col xs={12} md={4}>
@@ -49,22 +71,18 @@ class Tareas extends Component {
                             </Row>
                             <FormGroup controlId="formControlsTextarea">
                                 <ControlLabel>Descripción</ControlLabel>
-                                <FormControl inputRef={(ref) => { this.inputDescripcion = ref }} componentClass="textarea" placeholder="textarea" />
+                                <FormControl inputRef={(ref) => { this.inputDescripcion = ref }} componentClass="textarea" placeholder="Descripción" />
                             </FormGroup>
                             <FormGroup controlId="formControlsTextarea">
                                 <ControlLabel>Fecha de Entrega</ControlLabel><br />
                                 <input type="date" ref={el => this.inputFechaEntrega = el} />
                             </FormGroup>
-                            <Button onClick={() => this.props.addTarea({
-                                titulo: this.inputTitulo.value,
-                                descripcion: this.inputDescripcion.value,
-                                fechaEntrega: this.inputFechaEntrega.value,
-                                entregado: false
-                            })} bsStyle="success">Agregar Tarea</Button>
+                            <Button onClick={this.validar.bind(this)} bsStyle="success">Agregar Tarea</Button>
                         </FormGroup>
                     </Col>
 
                     <Col xs={12} md={8}>
+                    
                     {
                         this.state.cargandoData && this.props.logged
                         ?
@@ -85,6 +103,7 @@ class Tareas extends Component {
                         :
                         <h1> </h1>
                     }
+                    
                     {
                         
                         this.props.tareas.length>0
@@ -95,6 +114,7 @@ class Tareas extends Component {
                             )
                         })
                     }
+                    
                     </Col>
 
                 </Row>

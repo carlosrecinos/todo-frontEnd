@@ -78,6 +78,7 @@ const tareaReducer = (state,action)=>{
             tareas: []
         }
     }
+    
     return state;
 }
 export default tareaReducer;

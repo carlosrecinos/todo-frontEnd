@@ -67,10 +67,10 @@ class Login extends Component{
                         <label>Contraseña</label>
                         <input className="form-control" ref={(ref) => {this.inputPassword = ref}} type="password" placeholder="Password"/>
                         <br/>
-                        <button  className="btn btn-primary btn-lg">Entrar</button>
-                        <p className="message">Not registered? 
+                        <button  className="btn btn-primary btn-lg">Entrar</button><br/>
+                        <p className="message">¿Sin una cuenta? 
                             <Link to='/registrar'>
-                                Create a account
+                                Crea una cuenta
                             </Link>
                         </p>
                     </div>

@@ -7,6 +7,8 @@ import logger from 'redux-logger';
 export default createStore(tareaReducer,
     {
         tareas: [],
+        tareasFinalizadas: [],
+        tareasNoFinalizadas: [],
         logged : false,
         showModalTareas:false,
         tareaToUpdate:{},

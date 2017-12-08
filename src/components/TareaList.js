@@ -56,7 +56,6 @@ class TareaList extends Component{
                         </div>
                         :
                         <div>
-                            <h5>ID: {this.props.listado._id}</h5>
                             <h5>Descripción: {this.props.listado.descripcion}</h5>
                             <h5>Autor: {this.props.listado.autor.nombre}</h5>
                             <h5>Fecha Entrega: {this.props.listado.fechaEntrega}</h5>
