@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './css/Login.css';
 import { Link } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import { connect } from 'react-redux';
 import { logIn } from '../actionCreators';
 import PropTypes from 'prop-types';
+
 class Login extends Component{
 
 
@@ -54,21 +54,28 @@ class Login extends Component{
 
     render(){
         return(
-            <div id="login">
-                <div className="login-page">
-                    <div className="form">
-                    <h2>Login</h2>
-                        <form onSubmit={this.onSubmit.bind(this)} className="login-form">
-                            <input ref={(ref) => {this.inputUsername = ref}} type="text" placeholder="Username"/>
-                            <input ref={(ref) => {this.inputPassword = ref}} type="password" placeholder="Password"/>
-                            <button>login</button>
-                            <p className="message">Not registered? 
-                                <Link to='/registrar'>
-                                    Create a account
-                                </Link>
-                            </p>
-                        </form>
+            <div className="row">
+                <div className="col-xs-12 col-md-6 col-md-offset-3">
+                <h2>Login</h2>
+                    <form onSubmit={this.onSubmit.bind(this)} className="login-form">
+
+                    <div className="form-group">
+                       
+                        <label>Email</label>
+                        <input className="form-control" ref={(ref) => {this.inputUsername = ref}} type="text" placeholder="Username"/>
+                       
+                        <label>Contraseña</label>
+                        <input className="form-control" ref={(ref) => {this.inputPassword = ref}} type="password" placeholder="Password"/>
+                        <br/>
+                        <button  className="btn btn-primary btn-lg">Entrar</button>
+                        <p className="message">Not registered? 
+                            <Link to='/registrar'>
+                                Create a account
+                            </Link>
+                        </p>
                     </div>
+                        
+                    </form>
                 </div>
             </div>
         )

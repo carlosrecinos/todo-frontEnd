@@ -41,20 +41,31 @@ class Registrar extends Component{
     }
 
     render(){
-        console.log(this)
         return(
-            <div id="login">
-                <div className="login-page">
-                    <div className="form">
+            <div className="row">
+                <div className="col-xs-12 col-md-6 col-md-offset-3" >
+                    <div>
                         <h2>Registrarse</h2>
                         
                         <form onSubmit={this.onSubmit.bind(this)} >
-                            <input ref={(ref) => {this.inputNombre = ref}} type="text" placeholder="Nombre"/>
-                            <input ref={(ref) => {this.inputEmail = ref}} type="text" placeholder="E-mail"/>
-                            <input ref={(ref) => {this.inputPass = ref}} type="password" placeholder="Password"/>
-                            <input ref={(ref) => {this.inputConfirmPass = ref}} type="password" placeholder="Confirm Password"/>
-                            <button type="submit">Registrarse</button>
-                            <p className="message">Already registered? <Link to="/login">Sign In</Link></p>
+                            <div className="form-group">
+
+                                <label>Nombre</label>
+                                <input className="form-control" ref={(ref) => {this.inputNombre = ref}} type="text" placeholder="Nombre"/>
+                                
+                                <label>Email</label>
+                                <input className="form-control" ref={(ref) => {this.inputEmail = ref}} type="text" placeholder="E-mail"/>
+                                
+                                <label>Contraseña</label>
+                                <input className="form-control" ref={(ref) => {this.inputPass = ref}} type="password" placeholder="Contraseña"/>
+                                
+                                <label>Repetir Contraseña</label>
+                                <input className="form-control" ref={(ref) => {this.inputConfirmPass = ref}} type="password" placeholder="Confirmar Contraseña"/>
+                                <br/>
+                                
+                                <button className="btn btn-primary btn-lg" type="submit">Registrarse</button>
+                                <p>¿Ya tienes una cuenta? <Link to="/login">Logueate</Link></p>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -23,9 +23,7 @@ class Header extends Component{
                     </LinkContainer>
                     
                     <NavDropdown eventKey={3} title={this.props.usuarioActual.nombre ? this.props.usuarioActual.nombre : ""} id="basic-nav-dropdown">
-                        <LinkContainer to="/perfil">
-                            <MenuItem eventKey={3.1}>Perfil</MenuItem>
-                        </LinkContainer>
+                        
                         <MenuItem eventKey={3.2} onClick={this.props.logOut}>Cerrar Sesión</MenuItem>
                     </NavDropdown>
                 </Nav>
@@ -49,7 +47,7 @@ class Header extends Component{
                 <Navbar.Header>
                     <Navbar.Brand>
                         <Link to="/">
-                            Korinver - Home
+                            Home
                         </Link>
                     </Navbar.Brand>
                 </Navbar.Header>

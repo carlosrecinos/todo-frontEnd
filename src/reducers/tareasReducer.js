@@ -75,7 +75,7 @@ const tareaReducer = (state,action)=>{
         return{
             ...state,
             logged:action.logged,
-            tareas: action.tareas
+            tareas: []
         }
     }
     return state;

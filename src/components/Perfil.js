@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Col,Row,FormControl,ControlLabel} from 'react-bootstrap'
+import {Col,Row,ControlLabel} from 'react-bootstrap'
 
 class Perfil extends Component{
     

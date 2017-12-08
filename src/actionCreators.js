@@ -29,8 +29,8 @@ const logIn = usuario =>{
                 pass: usuario.pass
             })
             .then(response=>{
-                if(response.data.mensaje){
-                    NotificationManager.error(response.data.mensaje, "Error")
+                if(response.data.error){
+                    NotificationManager.error(response.data.error, "Error")
                   
                 }else{
                     const token = response.data.token;
@@ -128,7 +128,7 @@ const fillTareas = () => {
   const updateTarea = tarea => {
       console.log("UPDATE",tarea._id)
     return dispatch =>{
-      return axios.put('https://api-rest-padawan.herokuapp.com/login/'+tarea._id,tarea)
+      return axios.put('https://api-rest-padawan.herokuapp.com/tareas/'+tarea._id,tarea)
       .then(response=>{
           if(response.data.error){
             NotificationManager.error(response.data.error, "Error");
